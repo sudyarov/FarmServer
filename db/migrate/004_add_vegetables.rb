@@ -9,25 +9,25 @@ class AddVegetables < ActiveRecord::Migration
     Vegetable.create(
       :type_id => 2,
       :x => 0,
-      :y => 5,
+      :y => 1,
       :stage => 3
     )
     Vegetable.create(
       :type_id => 3,
       :x => 0,
-      :y => 10,
+      :y => 2,
       :stage => 5
     )
     Vegetable.create(
       :type_id => 3,
-      :x => 5,
-      :y => 5,
+      :x => 1,
+      :y => 1,
       :stage => 2
     )
     Vegetable.create(
       :type_id => 2,
-      :x => 5,
-      :y => 10,
+      :x => 1,
+      :y => 2,
       :stage => 5
     )
   end

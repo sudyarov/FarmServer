@@ -1,0 +1,22 @@
+
+<command name="getField" />
+<data name="field" x="" y="" width="" height="">
+	<vegetable id="" type="" x="" y="" stage=""/>
+</data>
+
+<command name="addVegetable">
+	<vegetable type="" x="" y="" />
+</command>
+<data name="vegetableAdded">
+	<vegetable id="" type="" x="" y="" stage=""/>
+</data>
+
+<command name="delVegetable">
+	<vegetable id="" />
+</command>
+<data name="vegetableDeleted" />
+
+
+
+
+<error code="" message="" command=""/>

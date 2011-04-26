@@ -3,10 +3,8 @@ class RequestController < ApplicationController
 	end
 
 	def main
-		xml_data = params[:xml_field]
+		xml_data = params[:command]
 		xml = REXML::Document.new(xml_data)
-		#command = xml.elements['command'].attributes['name']
-		#command.write( str = "")
 		commandName = xml.elements['command'].attributes['name']
 		
 		case commandName
