@@ -35,7 +35,12 @@ class RequestController < ApplicationController
 	end
 	
 	def delVegetable(vegetable)
-		Vegetable.delete(vegetable.attributes['id'])
+		begin
+			Vegetable.delete(vegetable.attributes['id'])
+		rescue
+			render :layout => "error"
+			return
+		end
 		render :layout => "deleted"
 	end
 end
