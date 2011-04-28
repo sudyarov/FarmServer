@@ -18,7 +18,8 @@ class RequestController < ApplicationController
 		@vegetables = Vegetable.find(
 			:all, 
 			:joins => "as veg left join vegetable_types as veg_types on veg.type_id=veg_types.id",
-			:select => "veg.id as id, veg_types.vtype, veg.row, veg.column, veg.stage"
+			:select => "veg.id as id, veg_types.vtype, veg.row, veg.column, veg.stage",
+			:order => "veg.column, veg.row DESC"
 		)
 		render :layout => "list"
 	end
