@@ -11,6 +11,7 @@ class RequestController < ApplicationController
 			when "getField": getField
 			when "addVegetable": addVegetable(xml.elements['command'].elements['vegetable'])
 			when "delVegetable": delVegetable(xml.elements['command'].elements['vegetable'])
+			when "nextStep": nextStep
 		end
 	end
 	
@@ -43,5 +44,25 @@ class RequestController < ApplicationController
 			return
 		end
 		render :layout => "deleted"
+	end
+	
+	def nextStep
+		vegetables = Vegetable.find(:all)
+		
+		begin
+			Vegetable.transaction do
+				for vegetable in vegetables
+					if vegetable.stage < 5
+						vegetable.stage += 1
+						vegetable.save!
+					end
+				end
+			end
+		rescue
+			render :layout => "error"
+			return
+		end
+		
+		render :layout => "nextStep"
 	end
 end
