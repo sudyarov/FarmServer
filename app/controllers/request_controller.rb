@@ -15,15 +15,19 @@ class RequestController < ApplicationController
 	end
 	
 	def getField
-		@vegetables = Vegetable.find(:all)
+		@vegetables = Vegetable.find(
+			:all, 
+			:joins => "as veg left join vegetable_types as veg_types on veg.type_id=veg_types.id",
+			:select => "veg.id as id, veg_types.vtype, veg.row, veg.column, veg.stage"
+		)
 		render :layout => "list"
 	end
 	
 	def addVegetable(newVegetable)
 		@vegetable = Vegetable.new(
 			:type_id => newVegetable.attributes['type'], 
-			:x => newVegetable.attributes['x'], 
-			:y => newVegetable.attributes['y'], 
+			:row => newVegetable.attributes['row'], 
+			:column => newVegetable.attributes['column'], 
 			:stage => 1 
 		)
 		@vegetable.save

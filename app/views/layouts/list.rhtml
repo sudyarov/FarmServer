@@ -1,5 +1,5 @@
-<data name="field" width="60" height="60">
+<data name="field">
 <% for vegetable in @vegetables -%>
-	<vegetable id="<%= vegetable.id %>" type="<%= vegetable.type_id %>" x="<%= vegetable.x %>" y="<%= vegetable.y %>" stage="<%= vegetable.stage %>"/>
+	<vegetable id="<%= vegetable.id %>" type="<%= vegetable.vtype %>" row="<%= vegetable.row %>" column="<%= vegetable.column %>" stage="<%= vegetable.stage %>"/>
 <% end -%>
 </data>

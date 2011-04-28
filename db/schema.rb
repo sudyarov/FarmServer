@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 4) do
 
   create_table "vegetables", :force => true do |t|
     t.integer "type_id"
-    t.integer "x"
-    t.integer "y"
+    t.integer "row"
+    t.integer "column"
     t.integer "stage"
   end
 
