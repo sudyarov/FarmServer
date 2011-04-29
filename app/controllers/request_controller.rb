@@ -12,6 +12,7 @@ class RequestController < ApplicationController
 			when "addVegetable": addVegetable(xml.elements['command'].elements['vegetable'])
 			when "delVegetable": delVegetable(xml.elements['command'].elements['vegetable'])
 			when "nextStep": nextStep
+			when "getImage": getImage(xml)
 		end
 	end
 	
@@ -64,5 +65,19 @@ class RequestController < ApplicationController
 		end
 		
 		render :layout => "nextStep"
+	end
+	
+	def getImage(xml)
+		vtype = xml.elements['command'].attributes['type']
+		stage = xml.elements['command'].attributes['stage']
+		
+		image = VegetableImage.find(
+			:first, 
+			:joins => "as veg_image left join vegetable_types as veg_types on veg_image.type_id=veg_types.id",
+			:select => "veg_image.url",
+			:conditions => "veg_types.vtype = '#{vtype}' AND veg_image.stage = #{stage}"
+		)
+		
+		send_file(image.url, :type => "image/png")
 	end
 end

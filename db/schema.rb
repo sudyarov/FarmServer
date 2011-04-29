@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 4) do
+ActiveRecord::Schema.define(:version => 6) do
+
+  create_table "vegetable_images", :force => true do |t|
+    t.integer "type_id"
+    t.integer "stage"
+    t.string  "url"
+  end
 
   create_table "vegetable_types", :force => true do |t|
     t.string "vtype"
