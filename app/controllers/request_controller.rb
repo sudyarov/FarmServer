@@ -13,6 +13,7 @@ class RequestController < ApplicationController
 			when "delVegetable": delVegetable(xml.elements['command'].elements['vegetable'])
 			when "nextStep": nextStep
 			when "getImage": getImage(xml)
+#unknown command
 		end
 	end
 	
@@ -27,13 +28,19 @@ class RequestController < ApplicationController
 	end
 	
 	def addVegetable(newVegetable)
+		@vtype = newVegetable.attributes['type']
+		vegType = VegetableType.find(
+			:first,
+			:select => "id",
+			:conditions => "vtype='#{@vtype}'"
+		)
 		@vegetable = Vegetable.new(
-			:type_id => newVegetable.attributes['type'], 
+			:type_id => vegType.id, 
 			:row => newVegetable.attributes['row'], 
 			:column => newVegetable.attributes['column'], 
 			:stage => 1 
 		)
-		@vegetable.save
+		@vegetable.save!
 		render :layout => "added"
 	end
 	
