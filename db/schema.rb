@@ -9,7 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 6) do
+ActiveRecord::Schema.define(:version => 8) do
+
+  create_table "field_parameters", :force => true do |t|
+    t.string "param_name"
+    t.string "param_value"
+  end
 
   create_table "vegetable_images", :force => true do |t|
     t.integer "type_id"

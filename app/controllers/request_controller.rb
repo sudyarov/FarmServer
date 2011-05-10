@@ -19,6 +19,18 @@ class RequestController < ApplicationController
 	end
 	
 	def getField
+		param = FieldParameter.find(
+			:first,
+			#:select => "param.value",
+			:conditions => "param_name='row_count'"
+		)
+		@rowCount = param.param_value
+		param = FieldParameter.find(
+			:first,
+			#:select => "param.value",
+			:conditions => "param_name='col_count'"
+		)
+		@colCount = param.param_value
 		@vegetables = Vegetable.find(
 			:all, 
 			:joins => "as veg left join vegetable_types as veg_types on veg.type_id=veg_types.id",

@@ -1,4 +1,4 @@
-<data name="field">
+<data name="field" rows="<%= @rowCount %>" columns="<%= @colCount %>">
 <% for vegetable in @vegetables -%>
 	<vegetable id="<%= vegetable.id %>" type="<%= vegetable.vtype %>" row="<%= vegetable.row %>" column="<%= vegetable.column %>" stage="<%= vegetable.stage %>"/>
 <% end -%>
